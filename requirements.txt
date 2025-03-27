@@ -1,0 +1,15 @@
+requests             # For making HTTP requests to APIs (e.g., CoinMarketCap, CoinGecko)
+pandas              # For data manipulation and storage
+matplotlib          # For plotting/visualizations
+numpy               # Often required by pandas, matplotlib, and many numeric libraries
+
+# Web Scraping
+selenium            # Automates browser interactions (scrolling, clicking, etc.)
+webdriver-manager   # Helps automatically download & manage browser drivers for Selenium
+beautifulsoup4      # For parsing HTML content once the page is fully loaded
+lxml                # (Optional) Faster HTML/XML parser that works well with BeautifulSoup
+
+# Sentiment Analysis (Basic)
+textblob            # Quick polarity/subjectivity scoring
+# OR
+nltk
