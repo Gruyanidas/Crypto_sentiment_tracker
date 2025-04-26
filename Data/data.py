@@ -1,8 +1,6 @@
 from pathlib import Path
 from datetime import datetime, timezone
-from sqlalchemy import (
-    create_engine, DateTime, Integer, String, Text, Float
-)
+from sqlalchemy import (create_engine, DateTime, String, Text, Float )
 import dotenv
 from sqlalchemy.orm import (
     DeclarativeBase, Mapped, mapped_column, sessionmaker
@@ -29,19 +27,19 @@ class NewsSentiment(Base):
     __tablename__ = "news_sentiment"
     id: Mapped[int] = mapped_column(primary_key=True)
     # Metadata
-    source: Mapped[str] = mapped_column(String(100))        # e.g., 'CoinDesk'
+    source: Mapped[str] = mapped_column(String(100))
     url: Mapped[str] = mapped_column(Text, unique=True, nullable=False, index=True)                  # Store the article URL
-    title: Mapped[str] = mapped_column(Text)                # Headline for fast lookup
-    article_text: Mapped[str] = mapped_column(Text)         # Full scraped article content
+    title: Mapped[str] = mapped_column(Text)
+    article_text: Mapped[str] = mapped_column(Text)
     # Entities & Token Mentions
-    crypto_mentioned: Mapped[str] = mapped_column(String(100))  # e.g., 'BTC, ETH' or just one
+    crypto_mentioned: Mapped[str] = mapped_column(String(100))
     # Time Info
     published_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
-    scraped_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))  # When you scraped it
+    scraped_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc))
     # Sentiment Fields
-    sentiment_score: Mapped[float] = mapped_column(Float)       # e.g., -1.0 to 1.0
-    sentiment_label: Mapped[str] = mapped_column(String(20))    # 'Positive', 'Neutral', 'Negative'
-    sentiment_model: Mapped[str] = mapped_column(String(50))    # e.g., 'VADER', 'BERT'
+    sentiment_score: Mapped[float] = mapped_column(Float)
+    sentiment_label: Mapped[str] = mapped_column(String(20))
+    sentiment_model: Mapped[str] = mapped_column(String(50))
 
 
 class PriceData(Base):
