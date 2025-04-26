@@ -90,39 +90,48 @@ class NewsViaAPI:
 
 	def proces_coindesk_data(self, data:dict):
 		"""Process data and writes it do db"""
-		all_news_data = []
 		with get_session() as session:
-			source = "CoinDesk"
+			#counters:
+			inserted = 0
+			skipped = 0
+			# with db open session, extracting fetched data from API and write to db
 			for item in data['Data']:
-				all_news_data.append((item.get("TITLE", "Unknown title"), item.get("AUTHORS", "Unknown authors"),
-									  item.get("URL", "Unknown url"), item.get("BODY", "No data"),
-									  item.get("KEYWORDS", "No keywords"), item.get("SENTIMENT", "No data"),
-									  item.get("PUBLISHED_ON", "Unknown data")))
-			for news in all_news_data:
-				try:
-					#check does the news exist in db, if yes, skip
-					existing = session.query(NewsSentiment).filter_by(url=news[2]).first()
-					if existing:
-						continue
-					label, sen_score = self.analyze_sentiment(news[3])
-				except Exception as model_err:
-					label, sen_score = "NEUTRAL", 0.0
-					print(f"Sentiment fallback: {model_err}")
+				url = item.get("URL")
+				# Important for not adding duplicated news in db
+				if not url:
+					print("Skipping article with missing URL!")
+					skipped += 1
+					continue
+				# check does the news exist in db, if yes, skip
+				existing = session.query(NewsSentiment).filter_by(url=url).first()
+				if existing:
+					skipped += 1
+					continue
+				title = item.get("TITLE", "Unknown title")
+				article_text = item.get("BODY", "No data")
+				crypto_mentioned = NewsViaAPI.extract_coins(article_text)
+				published_at = NewsViaAPI.unix_to_db_timestamp(item.get("PUBLISHED_ON", "Unknown data"))
+				scraped_at = datetime.now(timezone.utc)
+				label, sen_score = self.analyze_sentiment(article_text)
+
 				try:
 					new_entry = NewsSentiment(
-						source=source,
-						url=news[2],
-						title=news[0],
-						article_text=news[3],
-						crypto_mentioned= NewsViaAPI.extract_coins(news[3]),
-						published_at=NewsViaAPI.unix_to_db_timestamp(news[6]),
-						scraped_at=datetime.now(timezone.utc),
+						source="Coin_Desk",
+						url=url,
+						title=title,
+						article_text=article_text,
+						crypto_mentioned = crypto_mentioned,
+						published_at = published_at,
+						scraped_at=scraped_at,
 						sentiment_label=label,
 						sentiment_score=sen_score,
 						sentiment_model="Gemma"
 					)
 					session.add(new_entry)
 					session.commit()
+					inserted += 1
+					print(f"✅ Inserted: {inserted} new articles, Skipped: {skipped} (already existed)")
+
 				except Exception as db_err:
 					session.rollback()
 					raise db_err

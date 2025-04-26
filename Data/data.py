@@ -30,7 +30,7 @@ class NewsSentiment(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     # Metadata
     source: Mapped[str] = mapped_column(String(100))        # e.g., 'CoinDesk'
-    url: Mapped[str] = mapped_column(Text)                  # Store the article URL
+    url: Mapped[str] = mapped_column(Text, unique=True, nullable=False, index=True)                  # Store the article URL
     title: Mapped[str] = mapped_column(Text)                # Headline for fast lookup
     article_text: Mapped[str] = mapped_column(Text)         # Full scraped article content
     # Entities & Token Mentions
