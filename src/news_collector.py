@@ -1,12 +1,13 @@
-import requests
+# general purposes imports
+import requests, os, dotenv
 from datetime import datetime, timezone
-import os
-import dotenv
-from pprint import pprint
-from transformers import pipeline
+from pathlib import Path
+# model imports
+from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
 import transformers
 import torch
-from pathlib import Path
+from peft import PeftModel
+#db related imports
 from Data.data import get_session, NewsSentiment
 from Data.helper_data import COIN_KEYWORDS
 
@@ -18,13 +19,34 @@ class NewsViaAPI:
 	COIN_DESK_API = os.getenv("COIN_DESK_API")
 	COIN_DESK_URL = os.getenv("COIN_DESK_URL")
 	def __init__(self):
-		pass
-		# model_path = Path(__file__).resolve().parent.parent / "gemma_financial_sentiment"
-		# assert model_path.exists(), f"Model path not found: {model_path}"
-		# self.sentiment_model = pipeline("text-classification",
-        #     model=str(model_path),
-        #     tokenizer=str(model_path),
-        #     local_files_only=True)
+		# model setup
+		base_model_path = Path(__file__).resolve().parent.parent / "base_gemma_model"
+		adapter_model_path = Path(__file__).resolve().parent.parent / "gemma_financial_sentiment"
+		assert adapter_model_path.exists(), f"Model path not found: {adapter_model_path}"
+		# loading model using a static method
+		model = self.load_model(base_model_path, adapter_model_path)
+
+		tokenizer = AutoTokenizer.from_pretrained(
+			adapter_model_path,
+			local_files_only=True)
+
+		self.sentiment_model = pipeline(
+			"text-classification",
+            model=model,
+            tokenizer=tokenizer,
+            local_files_only=True)
+
+	@staticmethod
+	def load_model(base_path, adapter_path):
+		base = AutoModelForSequenceClassification.from_pretrained(
+			base_path,
+			local_files_only=True
+		)
+		return PeftModel.from_pretrained(
+			base,
+			adapter_path,
+			local_files_only=True
+		)
 
 	@staticmethod
 	def perform_http_request(url: str, method=None, params=None, json=None, data=None, headers=None):
@@ -86,6 +108,8 @@ class NewsViaAPI:
 		return datetime.fromtimestamp(unix_timestamp, tz=timezone.utc)
 
 	def analyze_sentiment(self, text):
+		if not text.strip():
+			return "Neutral", 0.0
 		result = self.sentiment_model(text)
 		return result[0]['label'], round(result[0]['score'], 3)
 
@@ -131,7 +155,7 @@ class NewsViaAPI:
 					session.add(new_entry)
 					session.commit()
 					inserted += 1
-					print(f"✅ Inserted: {inserted} new articles, Skipped: {skipped} (already existed)")
+					print(f"Inserted: {inserted} new articles, Skipped: {skipped} (already existed)")
 
 				except Exception as db_err:
 					session.rollback()

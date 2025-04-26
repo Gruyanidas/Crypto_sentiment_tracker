@@ -41,6 +41,18 @@ class NewsSentiment(Base):
     sentiment_label: Mapped[str] = mapped_column(String(20))
     sentiment_model: Mapped[str] = mapped_column(String(50))
 
+    def __repr__(self):
+        return f"<NewsSentiment(title={self.title[:30]}..., sentiment={self.sentiment_label})>"
+
+    def __str__(self):
+        return (
+            f"📰 {self.title[:60]}...\n"
+            f"🔗 URL: {self.url}\n"
+            f"🧠 Sentiment: {self.sentiment_label} ({self.sentiment_score})\n"
+            f"🪙 Coins: {self.crypto_mentioned}\n"
+            f"📅 Published: {self.published_at}, Scraped: {self.scraped_at}\n"
+            f"📚 Source: {self.source}\n"
+        )
 
 class PriceData(Base):
     __tablename__ = "price_data"
@@ -51,6 +63,16 @@ class PriceData(Base):
     volume_24h: Mapped[float] = mapped_column(Float)
     timestamp: Mapped[datetime] = mapped_column(DateTime, index=True)
     source: Mapped[str] = mapped_column(String(100))
+
+    def __repr__(self):
+        return f"<PriceData(symbol={self.symbol}, price_usd={self.price_usd}, timestamp={self.timestamp})>"
+
+    def __str__(self):
+        return (
+            f"💰 {self.symbol.upper()} - ${self.price_usd:,.2f}\n"
+            f"🏦 Market Cap: ${self.market_cap:,.0f}, Volume 24h: ${self.volume_24h:,.0f}\n"
+            f"🕒 Timestamp: {self.timestamp} | Source: {self.source}"
+        )
 #_____________________________________________________________________#
 
 if __name__ == "__main__":

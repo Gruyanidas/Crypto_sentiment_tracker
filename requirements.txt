@@ -1,4 +1,4 @@
-requests             # For making HTTP requests to APIs (e.g., CoinMarketCap, CoinGecko)
+requests~=2.32.3
 pandas              # For data manipulation and storage
 matplotlib          # For plotting/visualizations
 numpy               # Often required by pandas, matplotlib, and many numeric libraries
@@ -13,3 +13,7 @@ lxml                # (Optional) Faster HTML/XML parser that works well with Bea
 textblob            # Quick polarity/subjectivity scoring
 # OR
 nltk
+python-dotenv~=1.1.0
+transformers~=4.51.3
+torch~=2.7.0
+SQLAlchemy~=2.0.40

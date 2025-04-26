@@ -8,22 +8,20 @@ dotenv.load_dotenv()
 
 class PriceCollector:
 
-	COINGECKO_ENDPOINT = os.getenv('COINGECKO_ENDPOINT')
-
 	def __init__(self):
-		pass
+		self.COINGECKO_ENDPOINT = os.getenv('COINGECKO_ENDPOINT')
+		self.COINGECKO_API_KEY = os.getenv('COINGECKO_API_KEY')
 
-	@classmethod
-	def get_price_data(cls):
+	def get_price_data(self):
 		"""Fetches crypto prices for CoinGecko"""
 		headers = {"accept": "application/json",
-				   "x-cg-api-key": "CG-coSukCLbUoty17rvstPGc7qb"}
+				   "x-cg-api-key": self.COINGECKO_API_KEY}
 		params = {
 			"vs_currency": "usd",
 			"symbols": "btc,eth,bnb,xrp,xlm,usdt,usdc,sol,trx",
 			"price_change_percentage": "24h",
 			"precision": "2"}
-		data = NewsViaAPI.perform_http_request(url=cls.COINGECKO_ENDPOINT,
+		data = NewsViaAPI.perform_http_request(url=self.COINGECKO_ENDPOINT,
 											   method='GET',
 											   params=params,
 											   headers=headers)
