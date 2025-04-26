@@ -63,7 +63,8 @@ class NewsViaAPI:
 				  "api_key": cls.COIN_DESK_API}
 		headers = {"Content-type": "application/json; charset=UTF-8"}
 		data = NewsViaAPI.perform_http_request(url=cls.COIN_DESK_URL,
-											   method="GET",params=params,
+											   method="GET",
+											   params=params,
 											   headers=headers)
 		return data
 
@@ -116,7 +117,7 @@ class NewsViaAPI:
 
 				try:
 					new_entry = NewsSentiment(
-						source="Coin_Desk",
+						source="CoinDesk",
 						url=url,
 						title=title,
 						article_text=article_text,
@@ -135,6 +136,7 @@ class NewsViaAPI:
 				except Exception as db_err:
 					session.rollback()
 					raise db_err
+
 
 
 

@@ -47,11 +47,11 @@ class NewsSentiment(Base):
 class PriceData(Base):
     __tablename__ = "price_data"
     id: Mapped[int] = mapped_column(primary_key=True)
-    symbol: Mapped[str] = mapped_column(String(10))
+    symbol: Mapped[str] = mapped_column(String(10), index=True)
     price_usd: Mapped[float] = mapped_column(Float)
     market_cap: Mapped[float] = mapped_column(Float)
     volume_24h: Mapped[float] = mapped_column(Float)
-    timestamp: Mapped[datetime] = mapped_column(DateTime)
+    timestamp: Mapped[datetime] = mapped_column(DateTime, index=True)
     source: Mapped[str] = mapped_column(String(100))
 #_____________________________________________________________________#
 
