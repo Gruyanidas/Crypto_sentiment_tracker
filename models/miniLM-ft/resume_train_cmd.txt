@@ -1,0 +1,4 @@
+python train_sentiment.py \
+  --csv ../train_data/news_dataset_mapped.csv \
+  --outdir ../models/miniLM-ft \
+  --resume_from_checkpoint ../models/miniLM-ft/checkpoint-2000

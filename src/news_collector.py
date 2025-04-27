@@ -3,8 +3,7 @@ import requests, os, dotenv
 from datetime import datetime, timezone
 from pathlib import Path
 # model imports
-from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
-import transformers
+from transformers import (pipeline, AutoTokenizer, TextClassificationPipeline, AutoModelForSequenceClassification)
 import torch
 from peft import PeftModel
 #db related imports
@@ -20,33 +19,20 @@ class NewsViaAPI:
 	COIN_DESK_URL = os.getenv("COIN_DESK_URL")
 	def __init__(self):
 		# model setup
-		base_model_path = Path(__file__).resolve().parent.parent / "base_gemma_model"
-		adapter_model_path = Path(__file__).resolve().parent.parent / "gemma_financial_sentiment"
-		assert adapter_model_path.exists(), f"Model path not found: {adapter_model_path}"
-		# loading model using a static method
-		model = self.load_model(base_model_path, adapter_model_path)
-
-		tokenizer = AutoTokenizer.from_pretrained(
-			adapter_model_path,
-			local_files_only=True)
-
-		self.sentiment_model = pipeline(
-			"text-classification",
-            model=model,
-            tokenizer=tokenizer,
-            local_files_only=True)
-
-	@staticmethod
-	def load_model(base_path, adapter_path):
-		base = AutoModelForSequenceClassification.from_pretrained(
-			base_path,
-			local_files_only=True
+		model_path = Path(__file__).resolve().parent.parent / "BERT_social_media_posts_model"
+		assert model_path.exists(), f"Model path not found: {model_path}"
+		self.tokenizer = AutoTokenizer.from_pretrained(
+			model_path,
+			local_files_only=True,
+			use_fast=True,
 		)
-		return PeftModel.from_pretrained(
-			base,
-			adapter_path,
-			local_files_only=True
-		)
+		self.sentiment_model = AutoModelForSequenceClassification.from_pretrained(model_path, num_labels = 3)
+		self.pipe = TextClassificationPipeline(model=self.sentiment_model,
+											   tokenizer=self.tokenizer,
+											   max_length=64,
+											   truncation=True,
+											   padding='max_length')
+
 
 	@staticmethod
 	def perform_http_request(url: str, method=None, params=None, json=None, data=None, headers=None):
@@ -80,6 +66,7 @@ class NewsViaAPI:
 
 	@classmethod
 	def get_coindesk_news(cls):
+		"""Fetches data for CoinDesk news"""
 		params = {"lang": "EN", "limit": 10,
 				  "categories": "BNB,BTC,ETH,SOL,XRP,XLM,TRX,USDT,USDC",
 				  "api_key": cls.COIN_DESK_API}
@@ -107,11 +94,15 @@ class NewsViaAPI:
 		"""Converts a Unix timestamp for DB storage"""
 		return datetime.fromtimestamp(unix_timestamp, tz=timezone.utc)
 
-	def analyze_sentiment(self, text):
-		if not text.strip():
-			return "Neutral", 0.0
-		result = self.sentiment_model(text)
-		return result[0]['label'], round(result[0]['score'], 3)
+	# def analyze_sentiment(self, text):
+	# 	if not text.strip():
+	# 		return "Neutral", 0.0
+	# 	result = self.sentiment_model(text)
+	# 	return result[0]['label'], round(result[0]['score'], 3)
+	def analyze_sentiment(self, input:str):
+		"""Return (label, confidence) tuple produced by model"""
+		output = self.pipe(input)
+		return output
 
 	def proces_coindesk_data(self, data:dict):
 		"""Process data and writes it do db"""
