@@ -1,2 +1,8 @@
 .env
 ../.venv
+../ BERT_social_media_posts_model/
+../Data/__pycache__/
+../Data/test.py
+__pycache__/
+test_model.py
+
