@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% set today_date = namespace(val="") %}
+
+<!-- Today's Summary -->
+<section class="today-section">
+    <h2>Today's Schedule
+        <span class="today-date" id="today-label"></span>
+    </h2>
+
+    {% if today %}
+        <div class="today-cards">
+            {% for r in today %}
+            <div class="today-card">
+                <div class="card-time">{{ r['time'] }}</div>
+                <div class="card-client">{{ r['client_name'] }}</div>
+                <div class="card-service">{{ r['service_type'] }}</div>
+                {% if r['notes'] %}
+                <div class="card-notes">{{ r['notes'] }}</div>
+                {% endif %}
+                <div class="card-actions">
+                    <a href="{{ url_for('edit', res_id=r['id']) }}" class="btn btn-sm btn-edit">Edit</a>
+                    <form method="POST" action="{{ url_for('delete', res_id=r['id']) }}" style="display:inline"
+                          onsubmit="return confirm('Delete this reservation?')">
+                        <button type="submit" class="btn btn-sm btn-delete">Delete</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-today">No appointments scheduled for today.</p>
+    {% endif %}
+</section>
+
+<!-- All Reservations Table -->
+<section class="all-section">
+    <h2>All Reservations</h2>
+
+    {% if reservations %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Client</th>
+                    <th>Service</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in reservations %}
+                <tr class="{{ 'row-today' if r['date'] == today_str else ('row-past' if r['date'] < today_str else '') }}">
+                    <td>{{ r['date'] }}</td>
+                    <td>{{ r['time'] }}</td>
+                    <td><strong>{{ r['client_name'] }}</strong></td>
+                    <td>{{ r['service_type'] }}</td>
+                    <td class="notes-cell">{{ r['notes'] or '—' }}</td>
+                    <td class="actions-cell">
+                        <a href="{{ url_for('edit', res_id=r['id']) }}" class="btn btn-sm btn-edit">Edit</a>
+                        <form method="POST" action="{{ url_for('delete', res_id=r['id']) }}" style="display:inline"
+                              onsubmit="return confirm('Delete this reservation?')">
+                            <button type="submit" class="btn btn-sm btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p class="no-data">No reservations yet. <a href="{{ url_for('add') }}">Add the first one.</a></p>
+    {% endif %}
+</section>
+
+<script>
+    const now = new Date();
+    const opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('today-label').textContent = now.toLocaleDateString(undefined, opts);
+</script>
+{% endblock %}
