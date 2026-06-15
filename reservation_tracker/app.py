@@ -124,7 +124,17 @@ def day_view(date_str):
     hours   = WEEKEND_HOURS if weekday >= 5 else WEEKDAY_HOURS
     booked  = {r["time"]: r for r in reservations}
 
+    hour_times = {f"{h:02d}:00" for h in hours}
+
+    # standard hourly slots (free or booked)
     slots = [{"time": f"{h:02d}:00", "reservation": booked.get(f"{h:02d}:00")} for h in hours]
+
+    # squeeze in any off-hour bookings (e.g. 16:30) at the right position
+    for time_str, res in booked.items():
+        if time_str not in hour_times:
+            slots.append({"time": time_str, "reservation": res})
+
+    slots.sort(key=lambda s: s["time"])
 
     return render_template("day.html",
         date_str=date_str,
