@@ -10,11 +10,19 @@
 
     <form method="POST" class="res-form">
 
-        <div class="form-group">
-            <label for="client_name">Ime klijenta <span class="req">*</span></label>
-            <input type="text" id="client_name" name="client_name"
-                   value="{{ prefill.get('client_name', '') }}"
-                   placeholder="npr. Ana Jović" required autofocus>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="client_name">Ime klijenta <span class="req">*</span></label>
+                <input type="text" id="client_name" name="client_name"
+                       value="{{ prefill.get('client_name', '') }}"
+                       placeholder="npr. Ana Jović" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone"
+                       value="{{ prefill.get('phone', '') }}"
+                       placeholder="npr. 063 123 456">
+            </div>
         </div>
 
         <div class="form-row">

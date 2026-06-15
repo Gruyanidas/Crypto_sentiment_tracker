@@ -1,5 +1,5 @@
 import calendar
-from datetime import date
+from datetime import date, timedelta
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import database
@@ -10,10 +10,17 @@ app.secret_key = "imfinity-tracker-2025-secret"
 USERNAME = "admin"
 PASSWORD = "imfinity2025"
 
-WEEKDAY_HOURS = list(range(16, 21))   # 16:00 – 20:00 (last slot, ends 21:00)
+WEEKDAY_HOURS = list(range(16, 21))   # 16:00 – 20:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
 SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen"]
+
+SERVICE_COLORS = {
+    "Kontrola": "clr-teal",
+    "Botox":    "clr-purple",
+    "Usta":     "clr-rose",
+    "Kolagen":  "clr-gold",
+}
 
 MONTHS_SR = ["", "Januar", "Februar", "Mart", "April", "Maj", "Jun",
              "Jul", "Avgust", "Septembar", "Oktobar", "Novembar", "Decembar"]
@@ -22,6 +29,18 @@ DAYS_SHORT_SR = ["Pon", "Uto", "Sre", "Čet", "Pet", "Sub", "Ned"]
 DAYS_LONG_SR  = ["Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota", "Nedelja"]
 
 database.init_db()
+
+
+@app.context_processor
+def inject_helpers():
+    def service_color(service):
+        return SERVICE_COLORS.get(service, "clr-slate")
+    return {"service_color": service_color}
+
+
+@app.template_filter("add_weeks")
+def add_weeks_filter(date_str, weeks):
+    return (date.fromisoformat(date_str) + timedelta(weeks=weeks)).isoformat()
 
 
 def login_required(f):
@@ -122,6 +141,20 @@ def day_view(date_str):
     )
 
 
+# ── Client history ────────────────────────────────────────────────────────────
+
+@app.route("/client/<path:client_name>")
+@login_required
+def client_history(client_name):
+    reservations = database.get_by_client(client_name)
+    today = date.today().isoformat()
+    return render_template("client.html",
+        client_name=client_name,
+        reservations=reservations,
+        today=today,
+    )
+
+
 # ── Booking form ──────────────────────────────────────────────────────────────
 
 @app.route("/add", methods=["GET", "POST"])
@@ -130,6 +163,7 @@ def day_view(date_str):
 def add(prefill_date=None, prefill_time=None):
     if request.method == "POST":
         client_name  = request.form["client_name"].strip()
+        phone        = request.form.get("phone", "").strip()
         date_        = request.form["date"]
         time_        = request.form["time"]
         service_sel  = request.form.get("service_select", "")
@@ -141,14 +175,21 @@ def add(prefill_date=None, prefill_time=None):
             flash("Molimo popunite sva obavezna polja.", "error")
             return render_template("form.html", action="Dodaj", services=SERVICES,
                                    prefill={"date": date_, "time": time_,
-                                            "client_name": client_name,
+                                            "client_name": client_name, "phone": phone,
                                             "notes": notes, "service_type": service_type})
-        database.add(client_name, date_, time_, service_type, notes)
+        database.add(client_name, phone, date_, time_, service_type, notes)
         flash(f"Termin za {client_name} je zakazan. ✓", "success")
         return redirect(url_for("day_view", date_str=date_))
 
-    return render_template("form.html", action="Dodaj", services=SERVICES,
-                           prefill={"date": prefill_date or "", "time": prefill_time or ""})
+    # support prefill via query params (used by "schedule next" button)
+    prefill = {
+        "date":         prefill_date or request.args.get("date", ""),
+        "time":         prefill_time or request.args.get("time", ""),
+        "client_name":  request.args.get("client_name", ""),
+        "phone":        request.args.get("phone", ""),
+        "service_type": request.args.get("service_type", ""),
+    }
+    return render_template("form.html", action="Dodaj", services=SERVICES, prefill=prefill)
 
 
 @app.route("/edit/<int:res_id>", methods=["GET", "POST"])
@@ -161,6 +202,7 @@ def edit(res_id):
 
     if request.method == "POST":
         client_name  = request.form["client_name"].strip()
+        phone        = request.form.get("phone", "").strip()
         date_        = request.form["date"]
         time_        = request.form["time"]
         service_sel  = request.form.get("service_select", "")
@@ -172,7 +214,7 @@ def edit(res_id):
             flash("Molimo popunite sva obavezna polja.", "error")
             return render_template("form.html", action="Izmeni", services=SERVICES,
                                    res_id=res_id, prefill=dict(request.form))
-        database.update(res_id, client_name, date_, time_, service_type, notes)
+        database.update(res_id, client_name, phone, date_, time_, service_type, notes)
         flash(f"Termin za {client_name} je izmenjen. ✓", "success")
         return redirect(url_for("day_view", date_str=date_))
 

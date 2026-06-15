@@ -13,21 +13,31 @@
 <div class="slots-list">
     {% for slot in slots %}
         {% if slot.reservation %}
-            <div class="slot slot-booked">
+            {% set r = slot.reservation %}
+            <div class="slot slot-booked {{ service_color(r['service_type']) }}">
                 <div class="slot-time">{{ slot.time }}</div>
-                <div class="slot-info">
-                    <div class="slot-client">{{ slot.reservation['client_name'] }}</div>
-                    <div class="slot-service">{{ slot.reservation['service_type'] }}</div>
-                    {% if slot.reservation['notes'] %}
-                        <div class="slot-notes">{{ slot.reservation['notes'] }}</div>
+                <div class="slot-body">
+                    <div class="slot-top">
+                        <a href="{{ url_for('client_history', client_name=r['client_name']) }}" class="slot-client">{{ r['client_name'] }}</a>
+                        <span class="slot-badge {{ service_color(r['service_type']) }}">{{ r['service_type'] }}</span>
+                    </div>
+                    {% if r['notes'] %}
+                        <div class="slot-notes">{{ r['notes'] }}</div>
                     {% endif %}
-                </div>
-                <div class="slot-actions">
-                    <a href="{{ url_for('edit', res_id=slot.reservation['id']) }}" class="btn btn-sm btn-outline">Izmeni</a>
-                    <form method="POST" action="{{ url_for('delete', res_id=slot.reservation['id']) }}"
-                          onsubmit="return confirm('Obrisati termin za {{ slot.reservation['client_name'] }}?')">
-                        <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
-                    </form>
+                    {% if r['phone'] %}
+                        <a href="tel:{{ r['phone']|replace(' ', '') }}" class="phone-btn">&#128222; {{ r['phone'] }}</a>
+                    {% endif %}
+                    <div class="slot-actions">
+                        <a href="{{ url_for('edit', res_id=r['id']) }}" class="btn btn-sm btn-outline">Izmeni</a>
+                        <form method="POST" action="{{ url_for('delete', res_id=r['id']) }}"
+                              onsubmit="return confirm('Obrisati termin za {{ r['client_name'] }}?')">
+                            <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
+                        </form>
+                        <a href="{{ url_for('add', prefill_date=date_str|add_weeks(4), prefill_time=slot.time, client_name=r['client_name'], phone=r['phone'] or '', service_type=r['service_type']) }}"
+                           class="btn btn-sm btn-next">+4 ned.</a>
+                        <a href="{{ url_for('add', prefill_date=date_str|add_weeks(6), prefill_time=slot.time, client_name=r['client_name'], phone=r['phone'] or '', service_type=r['service_type']) }}"
+                           class="btn btn-sm btn-next">+6 ned.</a>
+                    </div>
                 </div>
             </div>
         {% else %}

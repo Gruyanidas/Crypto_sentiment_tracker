@@ -392,15 +392,91 @@ textarea { resize: vertical; min-height: 90px; }
     font-style: italic;
 }
 
-.slot-booked { background: var(--booked-bg); border-color: var(--gold-dim); }
+/* booked slot base */
+.slot-booked {
+    background: var(--booked-bg);
+    border-color: var(--gold-dim);
+    border-left-width: 4px;
+    align-items: flex-start;
+}
 
-.slot-info { flex: 1; }
+/* service color accents (left border) */
+.slot-booked.clr-teal   { border-left-color: #4db8a0; }
+.slot-booked.clr-purple { border-left-color: #a87acf; }
+.slot-booked.clr-rose   { border-left-color: #cf6878; }
+.slot-booked.clr-gold   { border-left-color: var(--gold); }
+.slot-booked.clr-slate  { border-left-color: #6a8a9a; }
 
-.slot-client { font-size: 1.05rem; font-weight: 600; color: var(--cream); }
-.slot-service { font-size: .88rem; color: var(--gold-dim); margin-top: .15rem; }
-.slot-notes { font-size: .82rem; color: var(--muted); margin-top: .3rem; font-style: italic; }
+/* service badge pill */
+.slot-badge {
+    font-size: .72rem;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+    letter-spacing: .3px;
+    white-space: nowrap;
+}
+.slot-badge.clr-teal   { background: rgba(77,184,160,.15); color: #4db8a0; }
+.slot-badge.clr-purple { background: rgba(168,122,207,.15); color: #a87acf; }
+.slot-badge.clr-rose   { background: rgba(207,104,120,.15); color: #cf6878; }
+.slot-badge.clr-gold   { background: rgba(201,168,112,.15); color: var(--gold); }
+.slot-badge.clr-slate  { background: rgba(106,138,154,.15); color: #6a8a9a; }
 
-.slot-actions { display: flex; flex-direction: column; gap: .4rem; align-items: flex-end; flex-shrink: 0; }
+.slot-body { flex: 1; display: flex; flex-direction: column; gap: .4rem; }
+
+.slot-top {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+}
+
+.slot-client {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--gold-dim);
+}
+.slot-client:hover { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+.slot-notes { font-size: .82rem; color: var(--muted); font-style: italic; }
+
+/* phone tap button */
+.phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    border-radius: 50px;
+    padding: .3rem .8rem;
+    width: fit-content;
+}
+.phone-btn:hover { background: rgba(201,168,112,.25); color: var(--gold-light); }
+
+/* slot actions row */
+.slot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    align-items: center;
+    margin-top: .2rem;
+}
+
+/* next appointment button */
+.btn-next {
+    background: var(--surface-3);
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+    font-size: .78rem;
+    padding: .35rem .75rem;
+}
+.btn-next:hover { background: var(--surface-2); color: var(--text); border-color: var(--gold-dim); }
 
 /* ── Booking form ─────────────────────────────────────────── */
 .form-page { display: flex; flex-direction: column; gap: 1.4rem; }
@@ -418,6 +494,69 @@ textarea { resize: vertical; min-height: 90px; }
 .form-row .form-group { flex: 1; }
 
 .form-actions { padding-top: .4rem; }
+
+/* ── Client history ──────────────────────────────────────── */
+.client-phone-big {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: var(--gold-glow);
+    border: 1.5px solid var(--gold-dim);
+    border-radius: var(--radius);
+    padding: .9rem 1.2rem;
+    text-decoration: none;
+}
+.client-phone-big:hover { background: rgba(201,168,112,.25); color: var(--gold-light); }
+
+.client-stats {
+    display: flex;
+    gap: .8rem;
+}
+.stat-box {
+    flex: 1;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: .9rem .6rem;
+    text-align: center;
+}
+.stat-num {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+}
+.stat-label { font-size: .75rem; color: var(--muted); margin-top: .3rem; }
+
+.history-list { display: flex; flex-direction: column; gap: .5rem; }
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    flex-wrap: wrap;
+    padding: .85rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: background .15s, border-color .15s;
+}
+.history-row:hover { background: var(--surface-2); border-color: var(--gold-dim); }
+
+.hist-upcoming { background: var(--booked-bg); border-color: var(--gold-dim); }
+.hist-past     { opacity: .55; }
+
+.hist-date { font-weight: 700; font-size: .95rem; min-width: 88px; }
+.hist-time { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+.hist-notes { font-size: .8rem; color: var(--muted); font-style: italic; width: 100%; }
+
+.no-data { color: var(--muted); font-style: italic; padding: 1rem 0; }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 480px) {
