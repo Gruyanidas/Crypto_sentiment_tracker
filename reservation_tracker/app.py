@@ -1,3 +1,4 @@
+import os
 import calendar
 from datetime import date, timedelta
 from functools import wraps
@@ -5,10 +6,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 import database
 
 app = Flask(__name__)
-app.secret_key = "imfinity-tracker-2025-secret"
+# Production values are provided via environment variables (set on the host);
+# the fallbacks keep local development working.
+app.secret_key = os.environ.get("SECRET_KEY", "imfinity-tracker-2025-secret")
 
-USERNAME = "admin"
-PASSWORD = "imfinity2025"
+USERNAME = os.environ.get("APP_USERNAME", "admin")
+PASSWORD = os.environ.get("APP_PASSWORD", "imfinity2025")
 
 WEEKDAY_HOURS = list(range(16, 22))   # 16:00 – 21:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00

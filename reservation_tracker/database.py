@@ -1,7 +1,10 @@
+import os
 import sqlite3
 from datetime import date
 
-DB_PATH = "reservations.db"
+# Absolute path so the database is always next to this file, regardless of
+# the process working directory (important on hosted environments).
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reservations.db")
 
 
 def get_conn():
