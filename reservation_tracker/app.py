@@ -10,7 +10,7 @@ app.secret_key = "imfinity-tracker-2025-secret"
 USERNAME = "admin"
 PASSWORD = "imfinity2025"
 
-WEEKDAY_HOURS = list(range(16, 21))   # 16:00 – 20:00
+WEEKDAY_HOURS = list(range(16, 22))   # 16:00 – 21:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
 SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen"]
