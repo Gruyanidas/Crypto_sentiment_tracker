@@ -1,50 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="form-section">
-    <h2>{{ action }} Reservation</h2>
+{% set current_service = prefill.get('service_type', '') %}
+{% set is_custom = current_service and current_service not in services %}
+
+<div class="form-page">
+    <a href="javascript:history.back()" class="back-link">&#8592; Nazad</a>
+    <h1 class="form-title">{{ action }} termin</h1>
 
     <form method="POST" class="res-form">
+
         <div class="form-group">
-            <label for="client_name">Client Name <span class="req">*</span></label>
+            <label for="client_name">Ime klijenta <span class="req">*</span></label>
             <input type="text" id="client_name" name="client_name"
-                   value="{{ reservation.get('client_name', '') if reservation is mapping else reservation['client_name'] }}"
-                   placeholder="e.g. John Smith" required autofocus>
+                   value="{{ prefill.get('client_name', '') }}"
+                   placeholder="npr. Ana Jović" required autofocus>
         </div>
 
         <div class="form-row">
             <div class="form-group">
-                <label for="date">Date <span class="req">*</span></label>
+                <label for="date">Datum <span class="req">*</span></label>
                 <input type="date" id="date" name="date"
-                       value="{{ reservation.get('date', '') if reservation is mapping else reservation['date'] }}"
-                       required>
+                       value="{{ prefill.get('date', '') }}" required>
             </div>
             <div class="form-group">
-                <label for="time">Time <span class="req">*</span></label>
+                <label for="time">Vreme <span class="req">*</span></label>
                 <input type="time" id="time" name="time"
-                       value="{{ reservation.get('time', '') if reservation is mapping else reservation['time'] }}"
-                       required>
+                       value="{{ prefill.get('time', '') }}" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="service_type">Service Type <span class="req">*</span></label>
-            <input type="text" id="service_type" name="service_type"
-                   value="{{ reservation.get('service_type', '') if reservation is mapping else reservation['service_type'] }}"
-                   placeholder="e.g. Haircut, Massage, Consultation" required>
+            <label for="service_select">Usluga <span class="req">*</span></label>
+            <select id="service_select" name="service_select">
+                <option value="" disabled {{ 'selected' if not current_service }}>— Izaberite uslugu —</option>
+                {% for s in services %}
+                    <option value="{{ s }}" {{ 'selected' if current_service == s }}>{{ s }}</option>
+                {% endfor %}
+                <option value="other" {{ 'selected' if is_custom }}>Ostalo (unesi ručno)</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="custom-wrap" style="display: {{ 'block' if is_custom else 'none' }};">
+            <label for="service_custom">Naziv usluge <span class="req">*</span></label>
+            <input type="text" id="service_custom" name="service_custom"
+                   value="{{ current_service if is_custom else '' }}"
+                   placeholder="Upiši naziv usluge">
         </div>
 
         <div class="form-group">
-            <label for="notes">Notes</label>
+            <label for="notes">Napomena</label>
             <textarea id="notes" name="notes" rows="3"
-                      placeholder="Any additional notes...">{{ reservation.get('notes', '') if reservation is mapping else reservation['notes'] }}</textarea>
+                      placeholder="Dodatne informacije...">{{ prefill.get('notes', '') }}</textarea>
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">{{ action }} Reservation</button>
-            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-gold btn-full">{{ action }} termin</button>
         </div>
+
     </form>
-</section>
+</div>
+
+<script>
+    const sel = document.getElementById('service_select');
+    const wrap = document.getElementById('custom-wrap');
+    const inp  = document.getElementById('service_custom');
+
+    function toggle() {
+        const show = sel.value === 'other';
+        wrap.style.display = show ? 'block' : 'none';
+        inp.required = show;
+    }
+
+    sel.addEventListener('change', toggle);
+    toggle();
+</script>
 
 {% endblock %}

@@ -25,19 +25,20 @@ def init_db():
         """)
 
 
-def get_all():
-    with get_conn() as conn:
-        return conn.execute(
-            "SELECT * FROM reservations ORDER BY date ASC, time ASC"
-        ).fetchall()
-
-
-def get_today():
-    today = date.today().isoformat()
+def get_by_date(date_str):
     with get_conn() as conn:
         return conn.execute(
             "SELECT * FROM reservations WHERE date = ? ORDER BY time ASC",
-            (today,)
+            (date_str,)
+        ).fetchall()
+
+
+def get_by_month(year, month):
+    prefix = f"{year:04d}-{month:02d}"
+    with get_conn() as conn:
+        return conn.execute(
+            "SELECT * FROM reservations WHERE date LIKE ? ORDER BY date ASC, time ASC",
+            (f"{prefix}-%",)
         ).fetchall()
 
 
