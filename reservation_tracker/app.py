@@ -11,7 +11,7 @@ USERNAME = "admin"
 PASSWORD = "imfinity2025"
 
 WEEKDAY_HOURS = list(range(16, 21))   # 16:00 – 20:00 (last slot, ends 21:00)
-WEEKEND_HOURS = list(range(13, 21))   # 13:00 – 20:00
+WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
 SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen"]
 
