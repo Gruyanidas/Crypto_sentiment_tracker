@@ -269,5 +269,48 @@ def delete(res_id):
     return redirect(url_for("calendar_view"))
 
 
+@app.route("/reschedule/<int:res_id>", methods=["GET", "POST"])
+@login_required
+def reschedule(res_id):
+    reservation = database.get_by_id(res_id)
+    if not reservation:
+        flash("Termin nije pronađen.", "error")
+        return redirect(url_for("calendar_view"))
+
+    if request.method == "POST":
+        client_name  = request.form["client_name"].strip()
+        phone        = request.form.get("phone", "").strip()
+        date_        = request.form["date"]
+        time_        = request.form["time"]
+        service_sel  = request.form.get("service_select", "")
+        service_cust = request.form.get("service_custom", "").strip()
+        service_type = service_cust if service_sel == "other" else service_sel
+        notes        = request.form.get("notes", "").strip()
+
+        if not client_name or not date_ or not time_ or not service_type:
+            flash("Molimo popunite sva obavezna polja.", "error")
+            return render_template("form.html", action="Prezakaži", services=SERVICES,
+                                   reschedule_id=res_id, pick_date=True,
+                                   prefill={"date": date_, "time": time_,
+                                            "client_name": client_name, "phone": phone,
+                                            "notes": notes, "service_type": service_type})
+
+        database.add(client_name, phone, date_, time_, service_type, notes)
+        database.delete(res_id)
+        flash(f"Termin za {client_name} je prezakazan za {date_}. ✓", "success")
+        return redirect(url_for("day_view", date_str=date_))
+
+    prefill = {
+        "client_name":  reservation["client_name"],
+        "phone":        reservation["phone"] or "",
+        "time":         reservation["time"],
+        "service_type": reservation["service_type"],
+        "notes":        reservation["notes"] or "",
+        "date":         "",
+    }
+    return render_template("form.html", action="Prezakaži", services=SERVICES,
+                           reschedule_id=res_id, prefill=prefill, pick_date=True)
+
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5050)

@@ -8,7 +8,9 @@
     <a href="javascript:history.back()" class="back-link">&#8592; Nazad</a>
     <h1 class="form-title">{{ action }} termin</h1>
 
-    <form method="POST" class="res-form">
+    <form method="POST"
+          {% if reschedule_id %}action="{{ url_for('reschedule', res_id=reschedule_id) }}"{% endif %}
+          class="res-form">
 
         <div class="form-row">
             <div class="form-group">

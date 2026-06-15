@@ -126,6 +126,13 @@ a:hover { color: var(--gold-light); }
 .btn-danger { background: var(--danger-bg); color: var(--danger); border: 1.5px solid rgba(192,85,85,.3); }
 .btn-danger:hover { background: rgba(192,85,85,.22); }
 
+.btn-reschedule {
+    background: transparent;
+    color: #7cb4d4;
+    border: 1.5px solid rgba(124,180,212,.35);
+}
+.btn-reschedule:hover { border-color: #7cb4d4; color: #a8d4ea; background: rgba(124,180,212,.1); }
+
 .btn-sm  { padding: .42rem .9rem; font-size: .82rem; }
 .btn-full { width: 100%; }
 

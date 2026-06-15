@@ -29,6 +29,7 @@
                     {% endif %}
                     <div class="slot-actions">
                         <a href="{{ url_for('edit', res_id=r['id']) }}" class="btn btn-sm btn-outline">Izmeni</a>
+                        <a href="{{ url_for('reschedule', res_id=r['id']) }}" class="btn btn-sm btn-reschedule">Prezakaži</a>
                         <form method="POST" action="{{ url_for('delete', res_id=r['id']) }}"
                               onsubmit="return confirm('Obrisati termin za {{ r['client_name'] }}?')">
                             <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
