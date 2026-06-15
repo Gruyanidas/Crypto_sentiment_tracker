@@ -38,11 +38,6 @@ def inject_helpers():
     return {"service_color": service_color}
 
 
-@app.template_filter("add_weeks")
-def add_weeks_filter(date_str, weeks):
-    return (date.fromisoformat(date_str) + timedelta(weeks=weeks)).isoformat()
-
-
 def login_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -155,6 +150,29 @@ def client_history(client_name):
     )
 
 
+# ── Schedule next appointment ───────────────────────────────────────────────
+
+@app.route("/schedule_next")
+@login_required
+def schedule_next():
+    """Compute base_date + N weeks and open the booking form pre-filled."""
+    base_date = request.args.get("base_date", "")
+    weeks_raw = request.args.get("weeks", "")
+    new_date = base_date
+    try:
+        weeks = max(1, min(int(weeks_raw), 104))
+        new_date = (date.fromisoformat(base_date) + timedelta(weeks=weeks)).isoformat()
+    except ValueError:
+        pass
+    return redirect(url_for("add",
+        date=new_date,
+        time=request.args.get("time", ""),
+        client_name=request.args.get("client_name", ""),
+        phone=request.args.get("phone", ""),
+        service_type=request.args.get("service_type", ""),
+    ))
+
+
 # ── Booking form ──────────────────────────────────────────────────────────────
 
 @app.route("/add", methods=["GET", "POST"])
@@ -181,7 +199,7 @@ def add(prefill_date=None, prefill_time=None):
         flash(f"Termin za {client_name} je zakazan. ✓", "success")
         return redirect(url_for("day_view", date_str=date_))
 
-    # support prefill via query params (used by "schedule next" button)
+    # support prefill via query params (used by "schedule next" buttons)
     prefill = {
         "date":         prefill_date or request.args.get("date", ""),
         "time":         prefill_time or request.args.get("time", ""),
@@ -189,7 +207,9 @@ def add(prefill_date=None, prefill_time=None):
         "phone":        request.args.get("phone", ""),
         "service_type": request.args.get("service_type", ""),
     }
-    return render_template("form.html", action="Dodaj", services=SERVICES, prefill=prefill)
+    pick_date = request.args.get("pick_date") and not prefill["date"]
+    return render_template("form.html", action="Dodaj", services=SERVICES,
+                           prefill=prefill, pick_date=pick_date)
 
 
 @app.route("/edit/<int:res_id>", methods=["GET", "POST"])

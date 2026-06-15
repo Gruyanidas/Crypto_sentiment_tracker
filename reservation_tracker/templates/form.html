@@ -82,6 +82,17 @@
 
     sel.addEventListener('change', toggle);
     toggle();
+
+    {% if pick_date %}
+    // "Naredni tretman": client data already filled, jump straight to date picking
+    const dateField = document.getElementById('date');
+    if (dateField) {
+        dateField.focus();
+        if (typeof dateField.showPicker === 'function') {
+            try { dateField.showPicker(); } catch (e) { /* needs a tap on some browsers */ }
+        }
+    }
+    {% endif %}
 </script>
 
 {% endblock %}

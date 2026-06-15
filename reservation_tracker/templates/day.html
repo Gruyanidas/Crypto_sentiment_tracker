@@ -33,10 +33,23 @@
                               onsubmit="return confirm('Obrisati termin za {{ r['client_name'] }}?')">
                             <button type="submit" class="btn btn-sm btn-danger">Obriši</button>
                         </form>
-                        <a href="{{ url_for('add', prefill_date=date_str|add_weeks(4), prefill_time=slot.time, client_name=r['client_name'], phone=r['phone'] or '', service_type=r['service_type']) }}"
-                           class="btn btn-sm btn-next">+4 ned.</a>
-                        <a href="{{ url_for('add', prefill_date=date_str|add_weeks(6), prefill_time=slot.time, client_name=r['client_name'], phone=r['phone'] or '', service_type=r['service_type']) }}"
-                           class="btn btn-sm btn-next">+6 ned.</a>
+                    </div>
+                    <div class="next-appt">
+                        <span class="next-label">Naredni termin za istog klijenta:</span>
+                        <form method="get" action="{{ url_for('schedule_next') }}" class="next-form">
+                            <input type="hidden" name="base_date" value="{{ date_str }}">
+                            <input type="hidden" name="time" value="{{ slot.time }}">
+                            <input type="hidden" name="client_name" value="{{ r['client_name'] }}">
+                            <input type="hidden" name="phone" value="{{ r['phone'] or '' }}">
+                            <input type="hidden" name="service_type" value="{{ r['service_type'] }}">
+                            <span class="weeks-wrap">za
+                                <input type="number" name="weeks" value="4" min="1" max="104"
+                                       class="weeks-input" inputmode="numeric">
+                                ned.</span>
+                            <button type="submit" class="btn btn-sm btn-next">Zakaži</button>
+                        </form>
+                        <a href="{{ url_for('add', time=slot.time, client_name=r['client_name'], phone=r['phone'] or '', service_type=r['service_type'], pick_date=1) }}"
+                           class="btn btn-sm btn-next btn-pick">📅 Naredni tretman</a>
                     </div>
                 </div>
             </div>

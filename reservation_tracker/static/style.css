@@ -478,6 +478,60 @@ textarea { resize: vertical; min-height: 90px; }
 }
 .btn-next:hover { background: var(--surface-2); color: var(--text); border-color: var(--gold-dim); }
 
+.btn-pick { color: var(--gold); border-color: var(--gold-dim); }
+.btn-pick:hover { color: var(--gold-light); border-color: var(--gold); background: var(--gold-glow); }
+
+/* next appointment controls */
+.next-appt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .55rem;
+    padding-top: .65rem;
+    border-top: 1px dashed var(--border);
+}
+
+.next-label {
+    width: 100%;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--gold-dim);
+    letter-spacing: .2px;
+}
+
+.next-form {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.weeks-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .85rem;
+    color: var(--muted);
+}
+
+.weeks-input {
+    width: 62px;
+    padding: .45rem .4rem;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+}
+.weeks-input:focus {
+    outline: none;
+    border-color: var(--gold-dim);
+    box-shadow: 0 0 0 3px var(--gold-glow);
+}
+
 /* ── Booking form ─────────────────────────────────────────── */
 .form-page { display: flex; flex-direction: column; gap: 1.4rem; }
 
