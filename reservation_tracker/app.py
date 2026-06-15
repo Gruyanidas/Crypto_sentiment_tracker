@@ -13,13 +13,14 @@ PASSWORD = "imfinity2025"
 WEEKDAY_HOURS = list(range(16, 22))   # 16:00 – 21:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
-SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen"]
+SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen", "Konsultacije"]
 
 SERVICE_COLORS = {
-    "Kontrola": "clr-teal",
-    "Botox":    "clr-purple",
-    "Usta":     "clr-rose",
-    "Kolagen":  "clr-gold",
+    "Kontrola":     "clr-teal",
+    "Botox":        "clr-purple",
+    "Usta":         "clr-rose",
+    "Kolagen":      "clr-gold",
+    "Konsultacije": "clr-slate",
 }
 
 MONTHS_SR = ["", "Januar", "Februar", "Mart", "April", "Maj", "Jun",
