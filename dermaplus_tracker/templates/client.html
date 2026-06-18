@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="day-header">
+    <a href="javascript:history.back()" class="back-link">&#8592; Назад</a>
+    <div>
+        <h1 class="day-title">{{ client_name }}</h1>
+        <p class="day-subtitle">Историја на термини</p>
+    </div>
+</div>
+
+{% if reservations %}
+    {% set phone = reservations[0]['phone'] %}
+    {% if phone %}
+        <a href="tel:{{ phone|replace(' ', '') }}" class="client-phone-big">&#128222; {{ phone }}</a>
+    {% endif %}
+
+    <div class="client-stats">
+        <div class="stat-box">
+            <div class="stat-num">{{ reservations|length }}</div>
+            <div class="stat-label">Вкупно посети</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num">{{ reservations|selectattr('date', 'ge', today)|list|length }}</div>
+            <div class="stat-label">Претстојни</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-num">{{ reservations|selectattr('date', 'lt', today)|list|length }}</div>
+            <div class="stat-label">Минати</div>
+        </div>
+    </div>
+
+    <div class="history-list">
+        {% for r in reservations %}
+            <a href="{{ url_for('day_view', date_str=r['date']) }}"
+               class="history-row {{ 'hist-past' if r['date'] < today else 'hist-upcoming' }}">
+                <div class="hist-date">{{ r['date'] }}</div>
+                <div class="hist-time">{{ r['time'] }}</div>
+                <span class="slot-badge {{ service_color(r['service_type']) }}">{{ r['service_type'] }}</span>
+                {% if r['notes'] %}
+                    <div class="hist-notes">{{ r['notes'] }}</div>
+                {% endif %}
+            </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="no-data">Нема термини за овој клиент.</p>
+{% endif %}
+
+{% endblock %}
