@@ -2,7 +2,7 @@ import os
 import calendar
 from datetime import date, timedelta
 from functools import wraps
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
 import database
 
 app = Flask(__name__)
@@ -46,6 +46,11 @@ DAYS_SHORT_MK = ["Пон", "Вто", "Сре", "Чет", "Пет", "Саб", "Н
 DAYS_LONG_MK  = ["Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота", "Недела"]
 
 database.init_db()
+
+
+@app.route('/sw.js')
+def service_worker():
+    return send_from_directory('static', 'sw.js')
 
 
 @app.context_processor

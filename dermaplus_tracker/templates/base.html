@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Derma Plus – Термини</title>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <meta name="theme-color" content="#1e1416">
+    <meta name="theme-color" content="#060e13">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
     <header class="site-header">
         <a href="{{ url_for('calendar_view') }}" class="brand"><em>derma plus</em></a>
         <a href="{{ url_for('logout') }}" class="logout-link">Одјави се</a>
