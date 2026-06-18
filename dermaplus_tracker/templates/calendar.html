@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="cal-header">
+    <a href="{{ url_for('calendar_view', year=prev_year, month=prev_month) }}" class="cal-nav" aria-label="Претходен месец">&#8249;</a>
+    <h1 class="cal-title">{{ month_name }} {{ year }}</h1>
+    <a href="{{ url_for('calendar_view', year=next_year, month=next_month) }}" class="cal-nav" aria-label="Следен месец">&#8250;</a>
+</div>
+
+<div class="cal-grid">
+    {% for day_name in day_headers %}
+        <div class="cal-day-header {{ 'weekend-header' if loop.index >= 6 }}">{{ day_name }}</div>
+    {% endfor %}
+
+    {% for week in cal %}
+        {% for day in week %}
+            {% if day == 0 %}
+                <div class="cal-cell cal-empty"></div>
+            {% else %}
+                {% set day_str = "%s-%02d-%02d"|format(year, month, day) %}
+                {% set day_res = res_by_date.get(day_str, []) %}
+                {% set is_today = day_str == today %}
+                {% set is_past  = day_str < today %}
+                {% set col_idx  = loop.index %}
+                {% set is_weekend = col_idx >= 6 %}
+
+                <a href="{{ url_for('day_view', date_str=day_str) }}"
+                   class="cal-cell {{ 'today' if is_today }} {{ 'past' if is_past }} {{ 'weekend' if is_weekend }} {{ 'has-res' if day_res }}">
+                    <span class="cal-day-num">{{ day }}</span>
+                    {% if day_res %}
+                        <span class="cal-count">{{ day_res|length }}</span>
+                    {% endif %}
+                </a>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="cal-legend">
+    <span class="legend-dot booked-dot"></span><span>Закажано</span>
+    <span class="legend-dot today-dot"></span><span>Денес</span>
+</div>
+
+{% endblock %}
