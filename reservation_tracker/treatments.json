@@ -1,0 +1,369 @@
+[
+  {
+    "name": "Laserska epilacija",
+    "category": "Laserska epilacija",
+    "opis": "Trajno smanjenje neželjenih dlačica laserom, za lice i telo. Dostupna po pojedinačnim zonama i u paketima. Za najbolji rezultat radi se serija tretmana; izvodi se uz hlađenje kože radi udobnosti.",
+    "description_en": "Permanent reduction of unwanted hair with laser, for face and body. Available per individual zone and in packages. A course of sessions gives the best result; performed with skin cooling for comfort.",
+    "dostupne_zone_i_paketi": [
+      "Full Body Laser Hair Removal",
+      "Full Body – Package 6+1",
+      "Essentials Package",
+      "Essentials Package 6+1",
+      "Upper Lips",
+      "Chin &amp; Submental Area",
+      "Whole Face",
+      "Sideburns with Cheeks",
+      "Underarms",
+      "Back",
+      "Groin Area",
+      "Pubic Area",
+      "Stomach",
+      "Stomach Line",
+      "Buttocks",
+      "Intimate Area + Underarms",
+      "Upper Legs with Knees",
+      "Lower Legs with Knees",
+      "Full Legs, Foot &amp; Toes",
+      "Whole Legs + Intimate Area",
+      "Underarms + Lower Legs with Knees",
+      "Arms and Hands",
+      "Half Arms &amp; Hands"
+    ]
+  },
+  {
+    "name": "Basic Face Treatment",
+    "category": "Tretmani lica",
+    "opis": "Dubinsko čišćenje, tonizacija i hidratacija za trenutno osvežen ten. Hydration",
+    "description_en": "Deep cleansing, toning and hydration for an instantly refreshed complexion.Dubinsko čišćenje, tonizacija i hidratacija za trenutno osvežen ten. Hydration"
+  },
+  {
+    "name": "Oxygen Treatment",
+    "category": "Tretmani lica",
+    "opis": "Infuzija kiseonika pod pritiskom za trenutni sjaj i punoću kože. Oxygenation",
+    "description_en": "Pressurised oxygen infusion that delivers instant radiance and plumpness.Infuzija kiseonika pod pritiskom za trenutni sjaj i punoću kože. Oxygenation"
+  },
+  {
+    "name": "Skin Oxygenation",
+    "category": "Tretmani lica",
+    "opis": "Revitalizirajuća terapija koja pojačava ćelijsku energiju i vraća prirodni sjaj. Oxygenation",
+    "description_en": "Revitalising therapy that boosts cellular energy and restores natural glow.Revitalizirajuća terapija koja pojačava ćelijsku energiju i vraća prirodni sjaj. Oxygenation"
+  },
+  {
+    "name": "Multivitamin Treatment",
+    "category": "Tretmani lica",
+    "opis": "Intenzivni vitaminski kokteil koji hrani, štiti i razjašnjava kožu. Nutrition",
+    "description_en": "Intensive vitamin cocktail infused into the skin to nourish, protect and brighten.Intenzivni vitaminski kokteil koji hrani, štiti i razjašnjava kožu. Nutrition"
+  },
+  {
+    "name": "Eye Contour Treatment",
+    "category": "Tretmani lica",
+    "opis": "Ciljani protokol za tamne podočnjake, otekline i fine linije oko očiju. Specialised",
+    "description_en": "Targeted protocol for dark circles, puffiness and fine lines around the eyes.Ciljani protokol za tamne podočnjake, otekline i fine linije oko očiju. Specialised"
+  },
+  {
+    "name": "Biorevitalisation",
+    "category": "Tretmani lica",
+    "opis": "NCTF 135 ili Plinest Kolagen — dubinska dermalna hidratacija i regeneracija za trajnu elastičnost. Premium",
+    "description_en": "NCTF 135 or Plinest Collagen — deep dermal hydration and regeneration for lasting suppleness.NCTF 135 ili Plinest Kolagen — dubinska dermalna hidratacija i regeneracija za trajnu elastičnost. Premium"
+  },
+  {
+    "name": "Jet Peel Hydration",
+    "category": "Tretmani lica",
+    "opis": "Mlaz fiziološke vode pod visokim pritiskom za trenutnu, duboku hidrataciju bez nelagode. Hydration",
+    "description_en": "High-pressure saline jet for instant deep hydration with zero discomfort.Mlaz fiziološke vode pod visokim pritiskom za trenutnu, duboku hidrataciju bez nelagode. Hydration"
+  },
+  {
+    "name": "Chemical Peel",
+    "category": "Tretmani lica",
+    "opis": "Kontrolisana eksfolijacija koja poboljšava teksturu, bistrost i ton kože. Resurfacing",
+    "description_en": "Controlled exfoliation that improves skin texture, clarity and tone.Kontrolisana eksfolijacija koja poboljšava teksturu, bistrost i ton kože. Resurfacing"
+  },
+  {
+    "name": "AHA &amp; BHA Treatments",
+    "category": "Tretmani lica",
+    "opis": "Alfa i beta hidroksi kiseline za glatku, čistu i osveženu kožu. Resurfacing",
+    "description_en": "Alpha and beta hydroxy acids for smooth, clear and refreshed skin.Alfa i beta hidroksi kiseline za glatku, čistu i osveženu kožu. Resurfacing"
+  },
+  {
+    "name": "Ultrasound Peeling",
+    "category": "Tretmani lica",
+    "opis": "Nežna ultrazvučna eksfolijacija za dubinsko čišćenje i obnovu kožne površine. Resurfacing",
+    "description_en": "Gentle ultrasonic exfoliation for deep cleansing and renewed skin surface.Nežna ultrazvučna eksfolijacija za dubinsko čišćenje i obnovu kožne površine. Resurfacing"
+  },
+  {
+    "name": "Microdermabrasion",
+    "category": "Tretmani lica",
+    "opis": "Mehanička eksfolijacija za svilenkastu teksturu, ujednačen ton i vraćeni sjaj. Resurfacing",
+    "description_en": "Mechanical exfoliation for silky texture, even tone and restored radiance.Mehanička eksfolijacija za svilenkastu teksturu, ujednačen ton i vraćeni sjaj. Resurfacing"
+  },
+  {
+    "name": "CO₂ Carbon Peel – Black Doll",
+    "category": "Tretmani lica",
+    "opis": "Carbon laser piling za dubinsko čišćenje pora, kontrolu sebuma i sjajan ton kože. Laser",
+    "description_en": "Carbon laser peel for deep pore cleansing, oil control and luminous skin tone.Carbon laser piling za dubinsko čišćenje pora, kontrolu sebuma i sjajan ton kože. Laser"
+  },
+  {
+    "name": "Soft Peel – Laser Rejuvenation",
+    "category": "Tretmani lica",
+    "opis": "Frakcionalno lasersko obnavljanje za teksturu, ton i mladoliki sjaj uz minimalan oporavak. Laser",
+    "description_en": "Fractional laser resurfacing for texture, tone and youthful glow — minimal downtime.Frakcionalno lasersko obnavljanje za teksturu, ton i mladoliki sjaj uz minimalan oporavak. Laser"
+  },
+  {
+    "name": "Mesotherapy",
+    "category": "Tretmani lica",
+    "opis": "Prilagođeni vitaminski i hijaluronski kokteil ubrizgan za vitalnost i hidrataciju kože. Mesotherapy",
+    "description_en": "Customised vitamin and hyaluronic cocktail injected for skin vitality and hydration.Prilagođeni vitaminski i hijaluronski kokteil ubrizgan za vitalnost i hidrataciju kože. Mesotherapy"
+  },
+  {
+    "name": "Needle-Free Mesotherapy",
+    "category": "Tretmani lica",
+    "opis": "Sve prednosti mezoterapije isporučene transdermalnim putem — maksimalni komfor, vidljivi rezultati. Mesotherapy",
+    "description_en": "All the benefits of mesotherapy delivered transdermally — maximum comfort, visible results.Sve prednosti mezoterapije isporučene transdermalnim putem — maksimalni komfor, vidljivi rezultati. Mesotherapy"
+  },
+  {
+    "name": "Non-Injectable Ampoule Application",
+    "category": "Tretmani lica",
+    "opis": "Koncentrisane aktivne ampule za trenutnu ishranu i korekciju kože. Mesotherapy",
+    "description_en": "Concentrated active ampoules driven into the skin for immediate nourishment and correction.Koncentrisane aktivne ampule za trenutnu ishranu i korekciju kože. Mesotherapy"
+  },
+  {
+    "name": "Mesoskin Booster + Peptides",
+    "category": "Tretmani lica",
+    "opis": "Skin booster obogaćen peptidima za duboku hidrataciju i trajni anti-ageing efekat. Boosters",
+    "description_en": "Peptide-enriched skin booster for deep hydration and a lasting anti-ageing effect.Skin booster obogaćen peptidima za duboku hidrataciju i trajni anti-ageing efekat. Boosters"
+  },
+  {
+    "name": "Microneedling",
+    "category": "Tretmani lica",
+    "opis": "Terapija indukcijom kolagena koja koristi mikrokanale za obnovu i učvršćivanje kože. Collagen",
+    "description_en": "Collagen induction therapy using micro-channels to renew and firm the skin.Terapija indukcijom kolagena koja koristi mikrokanale za obnovu i učvršćivanje kože. Collagen"
+  },
+  {
+    "name": "Dermapen",
+    "category": "Tretmani lica",
+    "opis": "Precizni microneedling za ciljano remodelovanje kože, smanjenje ožiljaka i poboljšanje teksture. Collagen",
+    "description_en": "Precision microneedling for targeted skin remodelling, scar reduction and texture improvement.Precizni microneedling za ciljano remodelovanje kože, smanjenje ožiljaka i poboljšanje teksture. Collagen"
+  },
+  {
+    "name": "Collagen Stimulator Karisma",
+    "category": "Tretmani lica",
+    "opis": "Bio-stimulator koji pokreće prirodni kolageni kaskadni efekat kože za trajni lifting. Collagen",
+    "description_en": "Bio-stimulator that triggers the skin's natural collagen cascade for a lasting lift effect.Bio-stimulator koji pokreće prirodni kolageni kaskadni efekat kože za trajni lifting. Collagen"
+  },
+  {
+    "name": "Collagen Stimulator Radiesse",
+    "category": "Tretmani lica",
+    "opis": "Kalsijum hidroksiapatitni filer koji pruža trenutni volumen i dugoročni rast kolagena. Collagen",
+    "description_en": "Calcium hydroxylapatite filler that provides immediate volume and long-term collagen growth.Kalsijum hidroksiapatitni filer koji pruža trenutni volumen i dugoročni rast kolagena. Collagen"
+  },
+  {
+    "name": "Collagen Package – 4 Treatments",
+    "category": "Tretmani lica",
+    "opis": "Program od četiri sesije za kumulativnu stimulaciju kolagena s postepeno vidljivim rezultatima. Package",
+    "description_en": "Four-session programme for cumulative collagen stimulation with progressively visible results.Program od četiri sesije za kumulativnu stimulaciju kolagena s postepeno vidljivim rezultatima. Package"
+  },
+  {
+    "name": "Skin Booster – Profhilo",
+    "category": "Tretmani lica",
+    "opis": "Ikonični remodelujući booster — duboka hidratacija i prirodna punoća. Premium",
+    "description_en": "The iconic remodelling booster — deep hydration and natural plumpness.Ikonični remodelujući booster — duboka hidratacija i prirodna punoća. Premium"
+  },
+  {
+    "name": "Skin Booster – Profhilo Structura",
+    "category": "Tretmani lica",
+    "opis": "Napredna strukturalna verzija za učvršćivanje i podizanje dubljih slojeva tkiva. Premium",
+    "description_en": "Advanced structural version for firming and lifting deeper tissue layers.Napredna strukturalna verzija za učvršćivanje i podizanje dubljih slojeva tkiva. Premium"
+  },
+  {
+    "name": "Skin Booster – Produktil",
+    "category": "Tretmani lica",
+    "opis": "Booster obogaćen polinukleotidima za duboku reparaciju i regeneraciju teksture kože. Booster",
+    "description_en": "Polynucleotide-enriched booster for deep repair and regeneration of skin texture.Booster obogaćen polinukleotidima za duboku reparaciju i regeneraciju teksture kože. Booster"
+  },
+  {
+    "name": "Skin Booster – Crystal",
+    "category": "Tretmani lica",
+    "opis": "Ultra čisti hijaluronski booster za sjajnu bistrost kože i efekt staklene kože. Booster",
+    "description_en": "Ultra-pure hyaluronic booster for brilliant skin clarity and glass-skin radiance.Ultra čisti hijaluronski booster za sjajnu bistrost kože i efekt staklene kože. Booster"
+  },
+  {
+    "name": "Skin Booster – Hidromax",
+    "category": "Tretmani lica",
+    "opis": "Visoko-koncentrovani booster hidratacije za dehidriranu i umornu kožu. Booster",
+    "description_en": "High-concentration hydration booster targeting dehydrated and fatigued skin.Visoko-koncentrovani booster hidratacije za dehidriranu i umornu kožu. Booster"
+  },
+  {
+    "name": "Skin Booster – Lemon Bottle",
+    "category": "Tretmani lica",
+    "opis": "Booster za osvetljavanje sa Riboflavin kompleksom za sjajnu, ujednačenu kožu. Booster",
+    "description_en": "Brightening booster with Riboflavin complex for luminous, even-toned skin.Booster za osvetljavanje sa Riboflavin kompleksom za sjajnu, ujednačenu kožu. Booster"
+  },
+  {
+    "name": "Skin Booster – Ejal 40",
+    "category": "Tretmani lica",
+    "opis": "Napredni HA booster niske viskoznosti za lako rasprostiranje i prirodnu revitalizaciju kože. Booster",
+    "description_en": "Advanced low-viscosity HA booster for effortless spreading and natural skin revitalisation.Napredni HA booster niske viskoznosti za lako rasprostiranje i prirodnu revitalizaciju kože. Booster"
+  },
+  {
+    "name": "Bacio – Lips Booster",
+    "category": "Tretmani lica",
+    "opis": "Namjenski lip booster za prirodnu hidrataciju, definiciju i mekane usne. Lips",
+    "description_en": "Dedicated lip booster for natural hydration, definition and a beautifully soft pout.Namjenski lip booster za prirodnu hidrataciju, definiciju i mekane usne. Lips"
+  },
+  {
+    "name": "PRS HA Long Lasting",
+    "category": "Tretmani lica",
+    "opis": "Dugotrajni HA booster koji održava duboku hidrataciju i sjaj tokom vremena. Booster",
+    "description_en": "Long-lasting HA booster that sustains deep hydration and glow over time.Dugotrajni HA booster koji održava duboku hidrataciju i sjaj tokom vremena. Booster"
+  },
+  {
+    "name": "Exosomes E-50",
+    "category": "Tretmani lica",
+    "opis": "Koncentrisana egzosomska formula za duboku ćelijsku reparaciju i sveobuhvatnu obnovu kože. Exosomes",
+    "description_en": "Concentrated exosome formula for deep cellular repair and comprehensive skin renewal.Koncentrisana egzosomska formula za duboku ćelijsku reparaciju i sveobuhvatnu obnovu kože. Exosomes"
+  },
+  {
+    "name": "Exosomes Booster",
+    "category": "Tretmani lica",
+    "opis": "Booster doza egzosoma za ubrzavanje zarastanja i intenziviranje sjaja kože. Exosomes",
+    "description_en": "Booster-dose exosomes to accelerate healing and intensify skin radiance.Booster doza egzosoma za ubrzavanje zarastanja i intenziviranje sjaja kože. Exosomes"
+  },
+  {
+    "name": "Synthetic Exosomes",
+    "category": "Tretmani lica",
+    "opis": "Laboratorijski razvijeni egzosomski preparati za preciznu, ciljanu regeneraciju kože. Exosomes",
+    "description_en": "Lab-engineered exosome particles for precise, targeted skin regeneration.Laboratorijski razvijeni egzosomski preparati za preciznu, ciljanu regeneraciju kože. Exosomes"
+  },
+  {
+    "name": "Exosome + Laser Package",
+    "category": "Tretmani lica",
+    "opis": "Kombinovani egzosomski i laserski protokol za sinergijsku, ubrzanu transformaciju kože. Package",
+    "description_en": "Combined exosome and laser protocol for synergistic, accelerated skin transformation.Kombinovani egzosomski i laserski protokol za sinergijsku, ubrzanu transformaciju kože. Package"
+  },
+  {
+    "name": "BTX-T33 Treatment",
+    "category": "Tretmani lica",
+    "opis": "Neinvazivno zatezanje kože i opuštanje bora BTX-T33 protokolom. Anti-ageing",
+    "description_en": "Non-invasive skin tightening and wrinkle relaxation with the BTX-T33 protocol.Neinvazivno zatezanje kože i opuštanje bora BTX-T33 protokolom. Anti-ageing"
+  },
+  {
+    "name": "Wrinkle Reduction – by Region",
+    "category": "Tretmani lica",
+    "opis": "Precizno omekšavanje bora primenjeno zona po zona za prirodno osvežene rezultate. Anti-ageing",
+    "description_en": "Precision wrinkle softening applied zone by zone for naturally refreshed results.Precizno omekšavanje bora primenjeno zona po zona za prirodno osvežene rezultate. Anti-ageing"
+  },
+  {
+    "name": "Hyaluronic Facial Volumisation",
+    "category": "Tretmani lica",
+    "opis": "Premium hijaluronski fileri za obnavljanje volumena lica, kontura i mladolične strukture. Fillers",
+    "description_en": "Premium hyaluronic fillers to restore facial volume, contour and youthful structure.Premium hijaluronski fileri za obnavljanje volumena lica, kontura i mladolične strukture. Fillers"
+  },
+  {
+    "name": "Cosmetic Lifting Treatment",
+    "category": "Tretmani lica",
+    "opis": "Nehirurški lifting koji redefinira konture lica, čvrstoću i celokupni izgled. Lifting",
+    "description_en": "Non-surgical lifting that redefines facial contours, firmness and overall appearance.Nehirurški lifting koji redefinira konture lica, čvrstoću i celokupni izgled. Lifting"
+  },
+  {
+    "name": "Lipolytic Facial Treatment",
+    "category": "Tretmani lica",
+    "opis": "Protokol rastvaranja masti lica za konturisanje, definiciju vilice i oblikovanje brade. Contouring",
+    "description_en": "Fat-dissolving facial protocol for contouring, jawline definition and chin sculpting.Protokol rastvaranja masti lica za konturisanje, definiciju vilice i oblikovanje brade. Contouring"
+  },
+  {
+    "name": "Melanocyte Treatment – Dark Spots",
+    "category": "Tretmani lica",
+    "opis": "Ciljana depigmentacija za hiperpigmentaciju, melazmu i tamne fleke. Pigmentation",
+    "description_en": "Targeted depigmentation for hyperpigmentation, melasma and dark spots.Ciljana depigmentacija za hiperpigmentaciju, melazmu i tamne fleke. Pigmentation"
+  },
+  {
+    "name": "IPL Laser – Skin Rejuvenation",
+    "category": "Tretmani lica",
+    "opis": "Intenzivno pulsirajuće svetlo za sveobuhvatno podmlađivanje — pigmentacija, crvenilo i tekstura. IPL",
+    "description_en": "Intense pulsed light for comprehensive rejuvenation — addressing pigmentation, redness and texture.Intenzivno pulsirajuće svetlo za sveobuhvatno podmlađivanje — pigmentacija, crvenilo i tekstura. IPL"
+  },
+  {
+    "name": "IPL – Problematic Skin",
+    "category": "Tretmani lica",
+    "opis": "IPL protokol kalibrisan za kožu sklonu aknama, osjetljivu i reaktivnu kožu. IPL",
+    "description_en": "IPL protocol calibrated for acne-prone, sensitive and reactive skin types.IPL protokol kalibrisan za kožu sklonu aknama, osjetljivu i reaktivnu kožu. IPL"
+  },
+  {
+    "name": "Morpheus RF Treatment",
+    "category": "Tretmani lica",
+    "opis": "Frakcionalni RF microneedling za duboko remodelovanje, zatezanje i konturisanje kože. Morpheus RF",
+    "description_en": "Fractional RF microneedling for profound skin remodelling, tightening and contouring.Frakcionalni RF microneedling za duboko remodelovanje, zatezanje i konturisanje kože. Morpheus RF"
+  },
+  {
+    "name": "Cellular Matrix",
+    "category": "Tretmani lica",
+    "opis": "Regenerativna PRP i HA matrica koja duboko obnavlja arhitekturu i vitalnost kože. Regeneration",
+    "description_en": "Regenerative PRP and HA matrix that deeply restores skin architecture and vitality.Regenerativna PRP i HA matrica koja duboko obnavlja arhitekturu i vitalnost kože. Regeneration"
+  },
+  {
+    "name": "Tesla EMS Body Sculpting",
+    "category": "Tretmani tela",
+    "opis": "Visoko-intenzivni elektromagnetni impulsi grade mišiće i smanjuju masnoće u jednoj udobnoj sesiji. Body Sculpting",
+    "description_en": "High-intensity electromagnetic pulses build muscle and reduce fat in a single, comfortable session.Visoko-intenzivni elektromagnetni impulsi grade mišiće i smanjuju masnoće u jednoj udobnoj sesiji. Body Sculpting"
+  },
+  {
+    "name": "Lipolytic Body Treatment",
+    "category": "Tretmani tela",
+    "opis": "Injekcioni kokteil za rastvaranje masti za precizno konturisanje tela i lokalnu redukciju masti. Lipolysis",
+    "description_en": "Injectable fat-dissolving cocktail for precise body contouring and localised fat reduction.Injekcioni kokteil za rastvaranje masti za precizno konturisanje tela i lokalnu redukciju masti. Lipolysis"
+  },
+  {
+    "name": "Lemon Bottle Lipolysis",
+    "category": "Tretmani tela",
+    "opis": "Premium formula za rastvaranje masti sa Riboflavinom i Bromelainom za vidljivo, ciljano mršavljenje. Lipolysis",
+    "description_en": "Premium fat-dissolving formula with Riboflavin and Bromelain for visible, targeted slimming.Premium formula za rastvaranje masti sa Riboflavinom i Bromelainom za vidljivo, ciljano mršavljenje. Lipolysis"
+  },
+  {
+    "name": "Morpheus RF – Body",
+    "category": "Tretmani tela",
+    "opis": "Frakcionalni RF koji zateže kožu, smanjuje masnoće i precizno oblikuje konture. Morpheus RF",
+    "description_en": "Fractional RF that tightens skin, reduces fat and sculpts contours with precision.Frakcionalni RF koji zateže kožu, smanjuje masnoće i precizno oblikuje konture. Morpheus RF"
+  },
+  {
+    "name": "IPL – Stretch Marks &amp; Scars",
+    "category": "Tretmani tela",
+    "opis": "Ciljana IPL laserska terapija za izbeljivanje strija i ožiljaka za glatkiju kožu. IPL Laser",
+    "description_en": "Targeted IPL laser to fade stretch marks and scars for smoother, more even skin.Ciljana IPL laserska terapija za izbeljivanje strija i ožiljaka za glatkiju kožu. IPL Laser"
+  },
+  {
+    "name": "Rejuvenation – Arm or Neck",
+    "category": "Tretmani tela",
+    "opis": "Tretman učvršćivanja i obnove za nežnu kožu ruku i vrata. Rejuvenation",
+    "description_en": "Firming and renewing treatment for the delicate skin of arms and neck.Tretman učvršćivanja i obnove za nežnu kožu ruku i vrata. Rejuvenation"
+  },
+  {
+    "name": "Hair Mesotherapy",
+    "category": "Tretmani kose",
+    "opis": "Prilagođeni vitaminski i mineralni kokteil ubrizgan u vlasište za ishranu folikula i stimulaciju rasta. Mesotherapy",
+    "description_en": "Customised vitamin and mineral cocktail injected into the scalp to nourish follicles and stimulate growth.Prilagođeni vitaminski i mineralni kokteil ubrizgan u vlasište za ishranu folikula i stimulaciju rasta. Mesotherapy"
+  },
+  {
+    "name": "Hair Restart – Laser Treatment",
+    "category": "Tretmani kose",
+    "opis": "Laserska terapija niskog nivoa koja reaktivira uspavane folikule i poboljšava cirkulaciju vlasišta. Laser",
+    "description_en": "Low-level laser therapy that reactivates dormant follicles and improves scalp circulation.Laserska terapija niskog nivoa koja reaktivira uspavane folikule i poboljšava cirkulaciju vlasišta. Laser"
+  },
+  {
+    "name": "Exosomes for Scalp",
+    "category": "Tretmani kose",
+    "opis": "Tretman vlasišta baziran na egzosomima za regeneraciju kose, jačanje folikula i aktivaciju rasta. Exosomes",
+    "description_en": "Exosome-powered scalp treatment for hair regeneration, follicle strengthening and growth activation.Tretman vlasišta baziran na egzosomima za regeneraciju kose, jačanje folikula i aktivaciju rasta. Exosomes"
+  },
+  {
+    "name": "PRP Hair Treatment",
+    "category": "Tretmani kose",
+    "opis": "Plazma bogata trombocitima obogaćena biotinom i glutationom — moćni prirodni protokol obnove kose. PRP",
+    "description_en": "Platelet-rich plasma enriched with biotin and glutathione — a powerful natural hair restoration protocol.Plazma bogata trombocitima obogaćena biotinom i glutationom — moćni prirodni protokol obnove kose. PRP"
+  },
+  {
+    "name": "Plinest Polynucleotides",
+    "category": "Tretmani kose",
+    "opis": "Terapija polinukleotidima za duboku regeneraciju vlasišta i dugoročnu revitalizaciju folikula kose. Regeneration",
+    "description_en": "Polynucleotide therapy for deep scalp regeneration and long-term hair follicle revitalisation.Terapija polinukleotidima za duboku regeneraciju vlasišta i dugoročnu revitalizaciju folikula kose. Regeneration"
+  }
+]
