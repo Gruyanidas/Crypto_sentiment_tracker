@@ -1,0 +1,28 @@
+[
+  {
+    "active": true,
+    "title": {
+      "sr": "Besplatna konsultacija",
+      "en": "Free consultation"
+    },
+    "description": {
+      "sr": "Sve konsultacije su uvek besplatne — dođite, popričajmo i napravimo plan tretmana prilagođen vama.",
+      "en": "All consultations are always free — come in, let's talk and design a treatment plan tailored to you."
+    },
+    "discount": "",
+    "valid_until": ""
+  },
+  {
+    "active": true,
+    "title": {
+      "sr": "Primer akcije: -20% na lasersku epilaciju",
+      "en": "Example promo: -20% on laser hair removal"
+    },
+    "description": {
+      "sr": "Ovo je PRIMER. Izmenite ili obrišite ga u promotions.json. Postavite 'active': false da ga sakrijete, ili 'valid_until' (npr. \"2026-07-31\") da automatski istekne.",
+      "en": "This is an EXAMPLE. Edit or delete it in promotions.json. Set 'active': false to hide it, or 'valid_until' (e.g. \"2026-07-31\") to auto-expire."
+    },
+    "discount": "-20%",
+    "valid_until": "2026-07-31"
+  }
+]
