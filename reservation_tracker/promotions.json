@@ -15,14 +15,14 @@
   {
     "active": true,
     "title": {
-      "sr": "Primer akcije: -20% na lasersku epilaciju",
-      "en": "Example promo: -20% on laser hair removal"
+      "sr": "Popust od 50% na TESLA EMS body sculpt tretmane do kraja jula!",
+      "en": "50% discount on TESLA EMS body sculpt treatments until the end of July!"
     },
     "description": {
-      "sr": "Ovo je PRIMER. Izmenite ili obrišite ga u promotions.json. Postavite 'active': false da ga sakrijete, ili 'valid_until' (npr. \"2026-07-31\") da automatski istekne.",
-      "en": "This is an EXAMPLE. Edit or delete it in promotions.json. Set 'active': false to hide it, or 'valid_until' (e.g. \"2026-07-31\") to auto-expire."
+      "sr": "Sjajna prilika da oblikujete vaše telo i izađete zategnuti na plažu! Iskoristite ovaj odličan popust do kraja jula!",
+      "en": "A great opportunity to sculpt your body and step onto the beach feeling toned and confident! Take advantage of this amazing discount until the end of July!"
     },
-    "discount": "-20%",
+    "discount": "-50%",
     "valid_until": "2026-07-31"
   }
 ]
