@@ -229,13 +229,20 @@ def _system_prompt(lang):
 # ── Anthropic call (defensive across SDK versions) ────────────────────────────
 
 def _create_message(client, **kwargs):
-    """Call messages.create, gracefully stripping newer params on older SDKs."""
+    import anthropic
     try:
         return client.messages.create(**kwargs)
     except TypeError:
         kwargs.pop("thinking", None)
         kwargs.pop("output_config", None)
         return client.messages.create(**kwargs)
+    except anthropic.BadRequestError as e:
+        msg = str(e).lower()
+        if "thinking" in msg or "effort" in msg or "not supported" in msg:
+            kwargs.pop("thinking", None)
+            kwargs.pop("output_config", None)
+            return client.messages.create(**kwargs)
+        raise
 
 
 def _ask_claude(history, lang):
