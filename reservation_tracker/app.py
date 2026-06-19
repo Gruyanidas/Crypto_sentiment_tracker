@@ -269,6 +269,16 @@ def delete(res_id):
         return redirect(url_for("day_view", date_str=back_date))
     return redirect(url_for("calendar_view"))
 
+@app.route("/confirm/<int:res_id>", methods=["POST"])
+@login_required
+def confirm(res_id):
+    res = database.get_by_id(res_id)
+    if res:
+        database.confirm(res_id)
+        flash(f"Termin za {res['client_name']} je potvrđen. ✓", "success")
+        return redirect(url_for("day_view", date_str=res["date"]))
+    return redirect(url_for("calendar_view"))
+
 
 @app.route("/reschedule/<int:res_id>", methods=["GET", "POST"])
 @login_required
