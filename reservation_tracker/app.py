@@ -33,7 +33,8 @@ DAYS_SHORT_SR = ["Pon", "Uto", "Sre", "Čet", "Pet", "Sub", "Ned"]
 DAYS_LONG_SR  = ["Ponedeljak", "Utorak", "Sreda", "Četvrtak", "Petak", "Subota", "Nedelja"]
 
 database.init_db()
-
+from agent import agent_bp
+app.register_blueprint(agent_bp)
 
 @app.context_processor
 def inject_helpers():
