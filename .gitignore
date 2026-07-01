@@ -1,0 +1,3 @@
+# Separate project — has its own git repo (Gruyanidas/Dermaplus_termini).
+# It lives here only as a working copy and must NOT be tracked by this repo.
+dermaplus_tracker/
