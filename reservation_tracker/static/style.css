@@ -418,7 +418,7 @@ textarea { resize: vertical; min-height: 90px; }
 }
 .slot-group-head .slot-time { min-width: 0; }
 
-/* capacity badge (e.g. "2/3 zauzeto" / "Popunjeno · 3/3") */
+/* how many clients are booked at this time (e.g. "Zakazano: 2") */
 .slot-cap {
     font-size: .72rem;
     font-weight: 700;
@@ -429,11 +429,6 @@ textarea { resize: vertical; min-height: 90px; }
     color: var(--gold);
     border: 1px solid var(--gold-dim);
     white-space: nowrap;
-}
-.slot-cap-full {
-    background: var(--danger-bg);
-    color: var(--danger);
-    border-color: rgba(192,85,85,.3);
 }
 
 .slot-group-body {

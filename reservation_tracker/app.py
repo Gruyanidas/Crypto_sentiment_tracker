@@ -16,14 +16,6 @@ PASSWORD = os.environ.get("APP_PASSWORD", "imfinity2025")
 WEEKDAY_HOURS = list(range(16, 22))   # 16:00 – 21:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
-# How many clients can be booked into the same time slot (e.g. number of
-# treatment rooms). Configurable via env; the salon can seat up to this many
-# people at once, so a time stays bookable until this many are scheduled.
-try:
-    ROOM_CAPACITY = max(1, int(os.environ.get("ROOM_CAPACITY", "3")))
-except (TypeError, ValueError):
-    ROOM_CAPACITY = 3
-
 SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen", "Konsultacije"]
 
 SERVICE_COLORS = {
@@ -135,8 +127,8 @@ def day_view(date_str):
     weekday = day_date.weekday()
     hours   = WEEKEND_HOURS if weekday >= 5 else WEEKDAY_HOURS
 
-    # group every reservation that shares a time into one slot, so multiple
-    # clients can be booked at the same hour (up to ROOM_CAPACITY rooms)
+    # group every reservation that shares a time into one slot, so any number
+    # of clients can be booked at the same hour — how many is the owner's call
     by_time = {}
     for r in reservations:
         by_time.setdefault(r["time"], []).append(r)
@@ -158,7 +150,6 @@ def day_view(date_str):
         day_name=DAYS_LONG_SR[weekday],
         formatted_date=day_date.strftime("%d.%m.%Y."),
         slots=slots,
-        capacity=ROOM_CAPACITY,
         year=day_date.year,
         month=day_date.month,
     )

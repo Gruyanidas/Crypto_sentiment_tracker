@@ -21,14 +21,11 @@
                 <a href="{{ url_for('add', prefill_date=date_str, prefill_time=slot.time) }}" class="btn btn-sm btn-gold">+ Zakaži</a>
             </div>
         {% else %}
-            {% set full = count >= capacity %}
             <div class="slot-group">
                 <div class="slot-group-head">
                     <span class="slot-time">{{ slot.time }}</span>
-                    {% if capacity > 1 %}
-                        <span class="slot-cap {{ 'slot-cap-full' if full }}">
-                            {% if full %}Popunjeno · {{ count }}/{{ capacity }}{% else %}{{ count }}/{{ capacity }} zauzeto{% endif %}
-                        </span>
+                    {% if count > 1 %}
+                        <span class="slot-cap">Zakazano: {{ count }}</span>
                     {% endif %}
                 </div>
                 <div class="slot-group-body">
@@ -73,9 +70,7 @@
                             </div>
                         </div>
                     {% endfor %}
-                    {% if not full %}
-                        <a href="{{ url_for('add', prefill_date=date_str, prefill_time=slot.time) }}" class="btn btn-sm btn-add-room">+ Dodaj još klijenta</a>
-                    {% endif %}
+                    <a href="{{ url_for('add', prefill_date=date_str, prefill_time=slot.time) }}" class="btn btn-sm btn-add-room">+ Dodaj još klijenta</a>
                 </div>
             </div>
         {% endif %}
