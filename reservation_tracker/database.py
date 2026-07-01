@@ -37,7 +37,7 @@ def init_db():
 def get_by_date(date_str):
     with get_conn() as conn:
         return conn.execute(
-            "SELECT * FROM reservations WHERE date = ? ORDER BY time ASC",
+            "SELECT * FROM reservations WHERE date = ? ORDER BY time ASC, id ASC",
             (date_str,)
         ).fetchall()
 

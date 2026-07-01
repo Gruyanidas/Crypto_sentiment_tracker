@@ -16,6 +16,14 @@ PASSWORD = os.environ.get("APP_PASSWORD", "imfinity2025")
 WEEKDAY_HOURS = list(range(16, 22))   # 16:00 – 21:00
 WEEKEND_HOURS = list(range(11, 22))   # 11:00 – 21:00
 
+# How many clients can be booked into the same time slot (e.g. number of
+# treatment rooms). Configurable via env; the salon can seat up to this many
+# people at once, so a time stays bookable until this many are scheduled.
+try:
+    ROOM_CAPACITY = max(1, int(os.environ.get("ROOM_CAPACITY", "3")))
+except (TypeError, ValueError):
+    ROOM_CAPACITY = 3
+
 SERVICES = ["Kontrola", "Botox", "Usta", "Kolagen", "Konsultacije"]
 
 SERVICE_COLORS = {
@@ -126,17 +134,22 @@ def day_view(date_str):
     reservations = database.get_by_date(date_str)
     weekday = day_date.weekday()
     hours   = WEEKEND_HOURS if weekday >= 5 else WEEKDAY_HOURS
-    booked  = {r["time"]: r for r in reservations}
+
+    # group every reservation that shares a time into one slot, so multiple
+    # clients can be booked at the same hour (up to ROOM_CAPACITY rooms)
+    by_time = {}
+    for r in reservations:
+        by_time.setdefault(r["time"], []).append(r)
 
     hour_times = {f"{h:02d}:00" for h in hours}
 
-    # standard hourly slots (free or booked)
-    slots = [{"time": f"{h:02d}:00", "reservation": booked.get(f"{h:02d}:00")} for h in hours]
+    # standard hourly slots (each holds a list of reservations, maybe empty)
+    slots = [{"time": f"{h:02d}:00", "reservations": by_time.get(f"{h:02d}:00", [])} for h in hours]
 
     # squeeze in any off-hour bookings (e.g. 16:30) at the right position
-    for time_str, res in booked.items():
+    for time_str, res_list in by_time.items():
         if time_str not in hour_times:
-            slots.append({"time": time_str, "reservation": res})
+            slots.append({"time": time_str, "reservations": res_list})
 
     slots.sort(key=lambda s: s["time"])
 
@@ -145,6 +158,7 @@ def day_view(date_str):
         day_name=DAYS_LONG_SR[weekday],
         formatted_date=day_date.strftime("%d.%m.%Y."),
         slots=slots,
+        capacity=ROOM_CAPACITY,
         year=day_date.year,
         month=day_date.month,
     )

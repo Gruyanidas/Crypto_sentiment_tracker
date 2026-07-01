@@ -400,20 +400,73 @@ textarea { resize: vertical; min-height: 90px; }
     font-style: italic;
 }
 
-/* booked slot base */
-.slot-booked {
+/* ── Booked slot group (one time, one or more clients) ─────── */
+.slot-group {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--gold-dim);
     background: var(--booked-bg);
-    border-color: var(--gold-dim);
+    padding: .85rem 1rem 1rem;
+}
+
+.slot-group-head {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+}
+.slot-group-head .slot-time { min-width: 0; }
+
+/* capacity badge (e.g. "2/3 zauzeto" / "Popunjeno · 3/3") */
+.slot-cap {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: var(--gold-glow);
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    white-space: nowrap;
+}
+.slot-cap-full {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-color: rgba(192,85,85,.3);
+}
+
+.slot-group-body {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+}
+
+/* individual client card within a slot group */
+.slot-res {
+    display: flex;
+    background: var(--surface-2);
+    border: 1.5px solid var(--border);
     border-left-width: 4px;
-    align-items: flex-start;
+    border-radius: var(--radius-sm);
+    padding: .8rem .9rem;
 }
 
 /* service color accents (left border) */
-.slot-booked.clr-teal   { border-left-color: #4db8a0; }
-.slot-booked.clr-purple { border-left-color: #a87acf; }
-.slot-booked.clr-rose   { border-left-color: #cf6878; }
-.slot-booked.clr-gold   { border-left-color: var(--gold); }
-.slot-booked.clr-slate  { border-left-color: #6a8a9a; }
+.slot-res.clr-teal   { border-left-color: #4db8a0; }
+.slot-res.clr-purple { border-left-color: #a87acf; }
+.slot-res.clr-rose   { border-left-color: #cf6878; }
+.slot-res.clr-gold   { border-left-color: var(--gold); }
+.slot-res.clr-slate  { border-left-color: #6a8a9a; }
+
+/* add-another-client button (shown while rooms remain) */
+.btn-add-room {
+    align-self: flex-start;
+    background: transparent;
+    color: var(--gold);
+    border: 1.5px dashed var(--gold-dim);
+}
+.btn-add-room:hover { border-color: var(--gold); color: var(--gold-light); background: var(--gold-glow); }
 
 /* service badge pill */
 .slot-badge {
