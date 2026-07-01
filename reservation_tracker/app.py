@@ -130,17 +130,22 @@ def day_view(date_str):
     reservations = database.get_by_date(date_str)
     weekday = day_date.weekday()
     hours   = WEEKEND_HOURS if weekday >= 5 else WEEKDAY_HOURS
-    booked  = {r["time"]: r for r in reservations}
+
+    # group every reservation that shares a time into one slot, so any number
+    # of clients can be booked at the same hour — how many is the owner's call
+    by_time = {}
+    for r in reservations:
+        by_time.setdefault(r["time"], []).append(r)
 
     hour_times = {f"{h:02d}:00" for h in hours}
 
-    # standard hourly slots (free or booked)
-    slots = [{"time": f"{h:02d}:00", "reservation": booked.get(f"{h:02d}:00")} for h in hours]
+    # standard hourly slots (each holds a list of reservations, maybe empty)
+    slots = [{"time": f"{h:02d}:00", "reservations": by_time.get(f"{h:02d}:00", [])} for h in hours]
 
     # squeeze in any off-hour bookings (e.g. 16:30) at the right position
-    for time_str, res in booked.items():
+    for time_str, res_list in by_time.items():
         if time_str not in hour_times:
-            slots.append({"time": time_str, "reservation": res})
+            slots.append({"time": time_str, "reservations": res_list})
 
     slots.sort(key=lambda s: s["time"])
 
